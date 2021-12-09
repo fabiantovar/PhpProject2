@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname="tienda1";
+$dbname="parqueadero";
 $puerto=3306;
 
 // Create connection

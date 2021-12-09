@@ -7,10 +7,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
     <head>
         <meta charset="UTF-8">
         <title></title>
+        
         <style type =text/css>
             ul li a {
                 color:black;
-                text-decoration: none;
+                text-decoration:underline;
                 
             }
             ul li{
@@ -29,12 +30,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
     <body>
         <nav>
         <ul>
-            <li><a href="Personas.php">Personas</a></li>
-            <li><a href="Empleados.php">Empleados</a></li>
-            <li><a href="Facturas.php">Facturas</a></li>
-            <li><a href="Precios.php">Precios</a></li>
-            <li><a href="Productos.php">Productos</a></li>
-            <li><a href="Ventas.php">Ventas</a></li>
+            <li><a href="Visitantes.php">Visitantes</a></li>
+            <li><a href="Empleados.php">Residentes</a></li>
+            <li><a href="Roles.php">Usuario</a></li>
+            <li><a href="Vehiculos.php">Vehiculos</a></li>
+            <li><a href="Parqueadero.php">Parqueaderos</a></li>
+            <li><a href="Registroentradaysalida.php">Registro Entrada y Salida</a></li>
+            <li><a href="Asignacion.php">Asignacion</a></li>
             
         </ul>
        </nav>
