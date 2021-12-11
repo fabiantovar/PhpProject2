@@ -11,11 +11,10 @@
     <script type="text/javascript">
         function enviarF(accion) {
             var form = document.enviar;
-            form.action = "Controlador/VisitantesC.php?accion=" + accion;
+            form.action = "Controlador/RolesC.php?accion=" + accion;
 
-            var d = document.getElementById("Id");
-            var pn = document.getElementById("Pnombre");
-            var pa = document.getElementById("Papellido");
+            var d = document.getElementById("id");
+            var pn = document.getElementById("rol");
             var sub = true;
             if (accion == "Guardar") {
 
@@ -29,11 +28,6 @@
                     pn.style = "border-color:red;";
 
                 }
-                if (pa.value == "") {
-                    sub = false;
-                    pa.style = "border-color:red;";
-                }
-
             }
             if (accion == "eliminar") {
                 if (d.value == "")
@@ -60,24 +54,20 @@
 
         }
         function ajax() {
-            var d = document.getElementById("Id").value;
+            var d = document.getElementById("id").value;
             const xmlhttp = new XMLHttpRequest();
             xmlhttp.onload = function () {
                 try {
                     myObj = JSON.parse(this.responseText);//[1013,Juan,Milena,Herrera,García,jua@h.com]
-                    document.getElementById("Pnombre").value = myObj[1];
-                    document.getElementById("Papellido").value = myObj[2];
-                    document.getElementById("telefono").value = myObj[3];
+                    document.getElementById("rol").value = myObj[1];
                 } catch (e) {
-                    document.getElementById("Pnombre").value = "";
-                    document.getElementById("Papellido").value = "";
-                    document.getElementById("telefono").value = "";
+                    document.getElementById("rol").value = "";
                     alert(this.responseText);
 
                 }
 
             }
-            xmlhttp.open("POST", "Controlador/VisitantesC.php");
+            xmlhttp.open("POST", "Controlador/RolesC.php");
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xmlhttp.send("accion=consultar&Id=" + d);
 
@@ -112,23 +102,14 @@
             <table id="tabla8">
 
                 <tr>
-                    <td><label for="Id">Identificación</td>
-                    <td><input type="number" id="Id" name="Id"></td>
+                    <td><label for="id">Identificación</td>
+                    <td><input type="number" id="id" name="id"></td>
                 </tr>
                 <tr>
-                    <td><label for="Pnombre">Primer nombre</td>
-                    <td><input type="text" id="Pnombre" name="Pnombre"></td>
+                    <td><label for="rol">Clase de Usuario</td>
+                    <td><input type="text" id="rol" name="rol"></td>
                 </tr>
 
-                <tr>
-                    <td><label for="Papellido">Primer apellido</td>
-                    <td><input type="text" id="Papellido" name="Papellido"></td>
-                </tr>
-
-                <tr>
-                    <td><label for="telefono">telefono</td>
-                    <td><input type="number" id="telefono" name="Telefono"></td>
-                </tr>
                 <tr>
                     <td><input type="button" value="Guardar" class="btn btn-primary" onclick="enviarF('Guardar')"></td>
                     <td><input type="button" value="Actualizar" class="btn btn-primary" onclick="enviarF('Actualizar')"></td>

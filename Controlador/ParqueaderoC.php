@@ -7,7 +7,7 @@ class ParqueaderoC extends Parqueadero {
     function __construct() {
         switch ($_REQUEST['accion']) {
             case "Guardar";
-                $this->Guardar();
+                $this->registrar();
                 break;
             case "Actualizar";
                 $this->actualizar();

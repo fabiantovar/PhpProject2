@@ -7,7 +7,7 @@ class VehiculosC extends Vehiculos {
     function __construct() {
         switch ($_REQUEST['accion']) {
             case "Guardar";
-                $this->Guardar();
+                $this->registrar();
                 break;
             case "Actualizar";
                 $this->actualizar();
@@ -39,7 +39,7 @@ class VehiculosC extends Vehiculos {
     function registrar() {
         if ($this->validarDatos()) {
 
-             $sql = "INSERT INTO Vehiculo Values('" . $this->getPlaca() . "','" . $this->getModelo() . "','"  . "','" . $this->getTipo() .  "')";
+             $sql = "INSERT INTO Vehiculo Values('" . $this->getPlaca() . "','" . $this->getModelo() . "','" . $this->getTipo() .  "')";
 
             $this->EjecutarQuery($sql, "El vehiculo ha sido registrado");
         } else {
@@ -69,7 +69,7 @@ class VehiculosC extends Vehiculos {
     }
 
     function validarDatos() {
-        if (isset($_POST['ID'])) {
+        if (isset($_POST['Id'])) {
            
             $this->setPlaca($_POST ['placa']);
             $this->setModelo($_POST ['modelo']);

@@ -31,7 +31,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
         <nav>
         <ul>
             <li><a href="Visitantes.php">Visitantes</a></li>
-            <li><a href="Empleados.php">Residentes</a></li>
+            <li><a href="Residentes.php">Residentes</a></li>
             <li><a href="Roles.php">Usuario</a></li>
             <li><a href="Vehiculos.php">Vehiculos</a></li>
             <li><a href="Parqueadero.php">Parqueaderos</a></li>

@@ -2,12 +2,12 @@
 
 require_once '../Modelo/RolesM.php';
 
-class RolesC extends Roles{
+class RolesC extends Roles {
 
     function __construct() {
         switch ($_REQUEST['accion']) {
             case "Guardar";
-                $this->Guardar();
+                $this->registrar();
                 break;
             case "Actualizar";
                 $this->actualizar();
@@ -28,7 +28,7 @@ class RolesC extends Roles{
     function eliminar() {
         if ($this->validarDatos()) {
 
-            echo  $sql = "DELETE FROM Roles WHERE Id='" . $this->getId() . "'";
+            $sql = "DELETE FROM Roles WHERE id='" . $this->getId() . "'";
 
             $this->EjecutarQuery($sql, "La personas ha sido eleminada");
         } else {
@@ -39,7 +39,7 @@ class RolesC extends Roles{
     function registrar() {
         if ($this->validarDatos()) {
 
-             $sql = "INSERT INTO Roles Values('" . $this->getId() . "','" . $this->getApto() . "','"  . "','" . $this->getTorre() .  "')";
+            $sql = "INSERT INTO Roles Values('" . $this->getId() . "','" . $this->getRol() . "')";
 
             $this->EjecutarQuery($sql, "La personas se ha registrado");
         } else {
@@ -49,16 +49,42 @@ class RolesC extends Roles{
 
     function actualizar() {
         if ($this->validarDatos()) {
-            $sql = "UPDATE Residentes SET Apto='" . $this->getApto() . "',Torre='" . $this->getTorre() . $this->getId() . "'";
+            $sql = "UPDATE Roles SET rol='" . $this->getRol() . $this->getId() . "'";
             $this->EjecutarQuery($sql, "La persona se ha actualizado en la base");
         } else {
             echo 'Los datos no se pueden actualizar';
         }
     }
 
+    function consultar() {
+        if ($this->validarDatos()) {
+            $sql = "SELECT * FROM Roles  WHERE id='" . $this->getId() . "'";
+            $this->ejecutarSelect($sql);
+        }
+    }
+
+    function ejecutarSelect($sql) {
+        require_once 'conexion.php';
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                $p = array($row['id'], $row['rol']);
+
+                $myJSON = json_encode($p);
+
+                echo $myJSON;
+            }
+        } else {
+            Mensajes::info("No hay resultados");
+        }
+        $conn->close();
+    }
+
     function EjecutarQuery($sql, $msj) {
-         require_once 'conexion.php';
-        
+        require_once 'conexion.php';
+
         if ($conn->query($sql) === TRUE) {
             echo $msj;
         } else {
@@ -69,13 +95,15 @@ class RolesC extends Roles{
     }
 
     function validarDatos() {
-        if (isset($_POST['ID'])) {
-           
-            $this->setId($_POST ['Id']);
-            $this->setApto($_POST ['Apto']);
-            $this->setTorre($_POST ['Torre']);
-            
-            return true;
+        if (isset($_POST['id'])) {
+            if ($_REQUEST['accion'] == "consultar") {
+                $this->setId($_POST ['id']);
+                return true;
+            } else {
+                $this->setId($_POST ['id']);
+                $this->setRol($_POST ['rol']);
+                return true;
+            }
         } else {
             return false;
         }

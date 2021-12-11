@@ -11,11 +11,11 @@
     <script type="text/javascript">
         function enviarF(accion) {
             var form = document.enviar;
-            form.action = "Controlador/VisitantesC.php?accion=" + accion;
+            form.action = "Controlador/VehiculosC.php?accion=" + accion;
 
-            var d = document.getElementById("Id");
-            var pn = document.getElementById("Pnombre");
-            var pa = document.getElementById("Papellido");
+            var d = document.getElementById("placa");
+            var pn = document.getElementById("modelo");
+            var pa = document.getElementById("tipo");
             var sub = true;
             if (accion == "Guardar") {
 
@@ -60,26 +60,26 @@
 
         }
         function ajax() {
-            var d = document.getElementById("Id").value;
+            var d = document.getElementById("placa").value;
             const xmlhttp = new XMLHttpRequest();
             xmlhttp.onload = function () {
                 try {
                     myObj = JSON.parse(this.responseText);//[1013,Juan,Milena,Herrera,García,jua@h.com]
-                    document.getElementById("Pnombre").value = myObj[1];
-                    document.getElementById("Papellido").value = myObj[2];
-                    document.getElementById("telefono").value = myObj[3];
+                    document.getElementById("placa").value = myObj[1];
+                    document.getElementById("modelo").value = myObj[2];
+                    document.getElementById("tipo").value = myObj[3];
                 } catch (e) {
-                    document.getElementById("Pnombre").value = "";
-                    document.getElementById("Papellido").value = "";
-                    document.getElementById("telefono").value = "";
+                    document.getElementById("placa").value = "";
+                    document.getElementById("modelo").value = "";
+                    document.getElementById("tipo").value = "";
                     alert(this.responseText);
 
                 }
 
             }
-            xmlhttp.open("POST", "Controlador/VisitantesC.php");
+            xmlhttp.open("POST", "Controlador/VehiculoC.php");
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send("accion=consultar&Id=" + d);
+            xmlhttp.send("accion=consultar&placa=" + d);
 
         }
 
@@ -112,8 +112,8 @@
             <table id="tabla8">
 
                 <tr>
-                    <td><label for="Id">Identificación</td>
-                    <td><input type="number" id="Id" name="Id"></td>
+                    <td><label for="placa">Placa</td>
+                    <td><input type="text" id="placa" name="placa"></td>
                 </tr>
                 <tr>
                     <td><label for="Pnombre">Primer nombre</td>
@@ -143,4 +143,5 @@
 
     </body>
 </html>
+
 

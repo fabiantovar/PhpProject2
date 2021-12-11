@@ -7,7 +7,7 @@ class ResidentesC extends Residentes {
     function __construct() {
         switch ($_REQUEST['accion']) {
             case "Guardar";
-                $this->Guardar();
+                $this->registrar();
                 break;
             case "Actualizar";
                 $this->actualizar();
@@ -28,7 +28,7 @@ class ResidentesC extends Residentes {
     function eliminar() {
         if ($this->validarDatos()) {
 
-            echo  $sql = "DELETE FROM Residentes WHERE id='" . $this->getId() . "'";
+            $sql = "DELETE FROM Residentes WHERE id='" . $this->getId() . "'";
 
             $this->EjecutarQuery($sql, "La personas ha sido eleminada");
         } else {
@@ -39,7 +39,7 @@ class ResidentesC extends Residentes {
     function registrar() {
         if ($this->validarDatos()) {
 
-             $sql = "INSERT INTO Residentes Values('" . $this->getId() . "','" . $this->getApto() . "','"  . "','" . $this->gettorre() .  "')";
+            $sql = "INSERT INTO Residentes Values('" . $this->getId() . "','" . $this->getApto() . "','" . $this->getTorre() . "')";
 
             $this->EjecutarQuery($sql, "La personas se ha registrado");
         } else {
@@ -49,16 +49,42 @@ class ResidentesC extends Residentes {
 
     function actualizar() {
         if ($this->validarDatos()) {
-            $sql = "UPDATE Residentes SET apto='" . $this->getapto() . "',torre='" . $this->gettorre() . $this->getId() . "'";
+            $sql = "UPDATE Residentes SET apto='" . $this->getApto() . "',torre='" . $this->getTorre() . "' WHERE id='" . $this->getId() . "'";
             $this->EjecutarQuery($sql, "La persona se ha actualizado en la base");
         } else {
             echo 'Los datos no se pueden actualizar';
         }
     }
 
+    function consultar() {
+        if ($this->validarDatos()) {
+            $sql = "SELECT * FROM Residentes  WHERE  id='" . $this->getId() . "'";
+            $this->ejecutarSelect($sql);
+        }
+    }
+
+    function ejecutarSelect($sql) {
+        require_once 'conexion.php';
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                $p = array($row['id'], $row['apto'], $row['torre']);
+
+                $myJSON = json_encode($p);
+
+                echo $myJSON;
+            }
+        } else {
+            Mensajes::info("No hay resultados");
+        }
+        $conn->close();
+    }
+
     function EjecutarQuery($sql, $msj) {
-         require_once 'conexion.php';
-        
+        require_once 'conexion.php';
+
         if ($conn->query($sql) === TRUE) {
             echo $msj;
         } else {
@@ -69,13 +95,16 @@ class ResidentesC extends Residentes {
     }
 
     function validarDatos() {
-        if (isset($_POST['ID'])) {
-           
-            $this->setId($_POST ['Id']);
-            $this->setApto($_POST ['Apto']);
-            $this->setTorre($_POST ['Torre']);
-            
-            return true;
+        if (isset($_POST['id'])) {
+            if ($_REQUEST['accion'] == "consultar") {
+                $this->setId($_POST ['id']);
+                return true;
+            } else {
+                $this->setId($_POST ['id']);
+                $this->setApto($_POST ['apto']);
+                $this->setTorre($_POST ['torre']);
+                return true;
+            }
         } else {
             return false;
         }

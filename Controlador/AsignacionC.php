@@ -7,7 +7,7 @@ class AsignacionC extends Asignacion {
     function __construct() {
         switch ($_REQUEST['accion']) {
             case "Guardar";
-                $this->Guardar();
+                $this->registrar();
                 break;
             case "Actualizar";
                 $this->actualizar();
@@ -39,7 +39,7 @@ class AsignacionC extends Asignacion {
     function registrar() {
         if ($this->validarDatos()) {
 
-             $sql = "INSERT INTO Asignacion Values('" . $this->getId() . "','" . $this->getFecha_asignacion() . "','"  . "','" . $this->getResidente() .  "')";
+             $sql = "INSERT INTO Asignacion Values('" . $this->getId() . "','" . $this->getFecha_asignacion() . "','". $this->getResidente() .  "')";
 
             $this->EjecutarQuery($sql, "La personas se ha registrado");
         } else {
@@ -69,7 +69,7 @@ class AsignacionC extends Asignacion {
     }
 
     function validarDatos() {
-        if (isset($_POST['ID'])) {
+        if (isset($_POST['id'])) {
            
             $this->setId($_POST ['id']);
             $this->setFecha_asignacion($_POST ['fecha_asignacion']);

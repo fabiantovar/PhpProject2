@@ -7,7 +7,7 @@ class EntradaysalidaC extends Entradaysalida {
     function __construct() {
         switch ($_REQUEST['accion']) {
             case "Guardar";
-                $this->Guardar();
+                $this->registrar();
                 break;
             case "Actualizar";
                 $this->actualizar();
@@ -39,7 +39,7 @@ class EntradaysalidaC extends Entradaysalida {
     function registrar() {
         if ($this->validarDatos()) {
 
-             $sql = "INSERT INTO Entradaysalida Values('" . $this->getPersonaid() . "','" . $this->getPlacavehiculo() . "','"  . "','" . $this->getParqueadero() .  "')";
+             $sql = "INSERT INTO Entradaysalida Values('" . $this->getPersonaid() . "','" . $this->getPlacavehiculo() . "','" . $this->getParqueadero() .  "')";
 
             $this->EjecutarQuery($sql, "La personas se ha registrado");
         } else {
@@ -69,7 +69,7 @@ class EntradaysalidaC extends Entradaysalida {
     }
 
     function validarDatos() {
-        if (isset($_POST['ID'])) {
+        if (isset($_POST['Id'])) {
            
             $this->setPersonaid($_POST ['personaid']);
             $this->setPlacavehiculo($_POST ['placavehiculo']);
