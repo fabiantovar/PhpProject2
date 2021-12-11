@@ -1,6 +1,7 @@
 <?php
 
 require_once '../Modelo/AsignacionM.php';
+require_once './Mensaje.php';
 
 class AsignacionC extends Asignacion {
 
@@ -28,9 +29,9 @@ class AsignacionC extends Asignacion {
     function eliminar() {
         if ($this->validarDatos()) {
 
-            echo  $sql = "DELETE FROM Asignacion WHERE id='" . $this->getId() . "'";
+            $sql = "DELETE FROM Asignacion WHERE id='" . $this->getId() . "'";
 
-            $this->EjecutarQuery($sql, "La personas ha sido eleminada");
+            $this->EjecutarQuery($sql, "El registro se ha eleiminado");
         } else {
             echo 'faltan datos y no se puede registrar';
         }
@@ -39,9 +40,9 @@ class AsignacionC extends Asignacion {
     function registrar() {
         if ($this->validarDatos()) {
 
-             $sql = "INSERT INTO Asignacion Values('" . $this->getId() . "','" . $this->getFecha_asignacion() . "','". $this->getResidente() .  "')";
+            $sql = "INSERT INTO Asignacion Values('" . $this->getId() . "','" . $this->getFecha_asignacion() . "','" . $this->getResidente() . "')";
 
-            $this->EjecutarQuery($sql, "La personas se ha registrado");
+            $this->EjecutarQuery($sql, "El vehiculo se ha registrado");
         } else {
             echo 'faltan datos y no se puede registrar';
         }
@@ -49,16 +50,42 @@ class AsignacionC extends Asignacion {
 
     function actualizar() {
         if ($this->validarDatos()) {
-            $sql = "UPDATE Residentes SET fecha_asignacion='" . $this->getFecha_asignacion() . "',residente='" . $this->getResidente() . $this->getId() . "'";
-            $this->EjecutarQuery($sql, "La persona se ha actualizado en la base");
+            $sql = "UPDATE Vehiculos SET fecha_asignacion='" . $this->getFecha_asignacion() . "',residente='" . $this->getResidente() . "'WHERE id='" . $this->getId() . "'";
+            $this->EjecutarQuery($sql, "El registro  se ha actualizado en la base");
         } else {
             echo 'Los datos no se pueden actualizar';
         }
     }
 
+    function consultar() {
+        if ($this->validarDatos()) {
+            $sql = "SELECT * FROM Asignacion  WHERE id='" . $this->getId() . "'";
+            $this->ejecutarSelect($sql);
+        }
+    }
+
+    function ejecutarSelect($sql) {
+        require_once 'conexion.php';
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                $p = array($row['id'], $row['fecha_asignacion'], $row['residente']);
+
+                $myJSON = json_encode($p);
+
+                echo $myJSON;
+            }
+        } else {
+            Mensajes::info("No hay resultados");
+        }
+        $conn->close();
+    }
+
     function EjecutarQuery($sql, $msj) {
-         require_once 'conexion.php';
-        
+        require_once 'conexion.php';
+
         if ($conn->query($sql) === TRUE) {
             echo $msj;
         } else {
@@ -70,12 +97,16 @@ class AsignacionC extends Asignacion {
 
     function validarDatos() {
         if (isset($_POST['id'])) {
-           
-            $this->setId($_POST ['id']);
-            $this->setFecha_asignacion($_POST ['fecha_asignacion']);
-            $this->setResidente($_POST ['residente']);
-            
-            return true;
+            if ($_REQUEST['accion'] == "consultar") {
+                $this->setId($_POST ['id']);
+                return true;
+            } else {
+                $this->setId($_POST ['id']);
+                $this->setFecha_asignacion($_POST ['fecha_asignacion']);
+                $this->setResidente($_POST ['residente']);
+
+                return true;
+            }
         } else {
             return false;
         }
@@ -85,6 +116,4 @@ class AsignacionC extends Asignacion {
 
 new AsignacionC();
 ?>
-
-
 

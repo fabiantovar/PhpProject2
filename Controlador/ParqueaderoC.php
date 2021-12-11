@@ -1,6 +1,7 @@
 <?php
 
 require_once '../Modelo/ParqueaderoM.php';
+require_once './Mensaje.php';
 
 class ParqueaderoC extends Parqueadero {
 

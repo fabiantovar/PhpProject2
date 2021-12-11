@@ -16,7 +16,8 @@
             var d = document.getElementById("personaid");
             var pn = document.getElementById("placavehiculo");
             var pa = document.getElementById("entrada");
-            var pe = document.getElementById("salida");
+            var s = document.getElementById("salida");
+            var p = document.getElementById("parqueadero");
             var sub = true;
             if (accion == "Guardar") {
 
@@ -34,55 +35,66 @@
                     sub = false;
                     pa.style = "border-color:red;";
                 }
-
-            }
-            if (accion == "eliminar") {
-                if (d.value == "")
+                if (s.value == "") {
                     sub = false;
-                d.style = "border-color:red;";
-
-            }
-            if (accion == "Actualizar") {
-                if (d.value == "")
+                    s.style = "border-color:red;";
+                }
+                if (p.value == "") {
                     sub = false;
-                d.style = "border-color:red;";
-            }
-            if (accion == "consultar") {
-                if (d.value == "")
+                    p.style = "border-color:red;";
+                }
+
+                }
+                if (accion == "eliminar") {
+                    if (d.value == "")
+                        sub = false;
                     d.style = "border-color:red;";
-                sub = false;
-                ajax();
-            }
-            if (sub) {
+
+                }
+                if (accion == "Actualizar") {
+                    if (d.value == "")
+                        sub = false;
+                    d.style = "border-color:red;";
+                }
+                if (accion == "consultar") {
+                    if (d.value == "")
+                        d.style = "border-color:red;";
+                    sub = false;
+                    ajax();
+                }
+                if (sub) {
 
 
-                form.submit();
-            }
-
-        }
-        function ajax() {
-            var d = document.getElementById("Id").value;
-            const xmlhttp = new XMLHttpRequest();
-            xmlhttp.onload = function () {
-                try {
-                    myObj = JSON.parse(this.responseText);//[1013,Juan,Milena,Herrera,García,jua@h.com]
-                    document.getElementById("Pnombre").value = myObj[1];
-                    document.getElementById("Papellido").value = myObj[2];
-                    document.getElementById("telefono").value = myObj[3];
-                } catch (e) {
-                    document.getElementById("Pnombre").value = "";
-                    document.getElementById("Papellido").value = "";
-                    document.getElementById("telefono").value = "";
-                    alert(this.responseText);
-
+                    form.submit();
                 }
 
             }
-            xmlhttp.open("POST", "Controlador/VisitantesC.php");
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send("accion=consultar&Id=" + d);
+            function ajax() {
+                var d = document.getElementById("personaid").value;
+                const xmlhttp = new XMLHttpRequest();
+                xmlhttp.onload = function () {
+                    try {
+                        myObj = JSON.parse(this.responseText);//[1013,Juan,Milena,Herrera,García,jua@h.com]
+                        document.getElementById("placavehiculo").value = myObj[1];
+                        document.getElementById("entrada").value = myObj[2];
+                        document.getElementById("salida").value = myObj[3];
+                        document.getElementById("parqueadero").value = myObj[4];
 
-        }
+                    } catch (e) {
+                        document.getElementById("placavehiculo").value = "";
+                        document.getElementById("entrada").value = "";
+                        document.getElementById("salida").value = "";
+                        document.getElementById("parqueadero").value = "";
+                        alert(this.responseText);
+
+                    }
+
+                }
+                xmlhttp.open("POST", "Controlador/EntradaysalidaC.php");
+                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlhttp.send("accion=consultar&personaid=" + d);
+
+            }
 
     </script>
 
@@ -113,12 +125,12 @@
             <table id="tabla8">
 
                 <tr>
-                    <td><label for="Id">Identificación</td>
-                    <td><input type="number" id="Id" name="Id"></td>
+                    <td><label for="personaid">Identificación</td>
+                    <td><input type="number" id="personaid" name="personaid"></td>
                 </tr>
                 <tr>
-                    <td><label for="Pnombre">Primer nombre</td>
-                    <td><input type="text" id="Pnombre" name="Pnombre"></td>
+                    <td><label for="placavehiculo">Placa Vehiculo</td>
+                    <td><input type="text" id="placavehiculo" name="placavehiculo"></td>
                 </tr>
 
                 <tr>
@@ -127,8 +139,13 @@
                 </tr>
 
                 <tr>
-                    <td><label for="telefono">telefono</td>
-                    <td><input type="number" id="telefono" name="Telefono"></td>
+                    <td><label for="salida">Salida</td>
+                    <td><input type="datetime-local" id="salida" name="salida"></td>
+                </tr>
+                
+                <tr>
+                    <td><label for="parqueadero">Parqueadero</td>
+                    <td><input type="number" id="parqueadero" name="parqueadero"></td>
                 </tr>
                 <tr>
                     <td><input type="button" value="Guardar" class="btn btn-primary" onclick="enviarF('Guardar')"></td>

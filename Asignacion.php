@@ -6,77 +6,82 @@
         <script src="bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
         <script src="bootstrap/js/popper.min.js" type="text/javascript"></script>
         <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-      
+
     <tilte></tilte>
     <script type="text/javascript">
         function enviarF(accion) {
             var form = document.enviar;
-            form.action = "Controlador/ResidentesC.php?accion=" + accion;
+            form.action = "Controlador/AsignacionC.php?accion=" + accion;
 
-            var d = document.getElementById("id");  
+            var d = document.getElementById("id");
             var pn = document.getElementById("fecha_asignacion");
             var pa = document.getElementById("residente");
             var sub = true;
-            if ("Guardar") {
+            if (accion == "Guardar") {
+
                 if (d.value == "") {
                     sub = false;
                     d.style = "border-color:red;";
-
-
                 }
 
                 if (pn.value == "") {
                     sub = false;
                     pn.style = "border-color:red;";
 
-
-
-
                 }
                 if (pa.value == "") {
                     sub = false;
                     pa.style = "border-color:red;";
                 }
-
-            }
-            if (accion == "Eliminar") {
-                f(d.value == "")
-                sub = false;
-                d.style = "border-color:red;";
-
-            }
-            if (sub) {
-                form.submit();
-            }
-             if (isset($_POST[consultar]))
-            {
-                include("abrir_conexion.php");
-                $id($_POST ['id']);
-                $fecha_asignacion($_POST ['fecha_asignacion']);
-                $residente($_POST ['residente']);
                
-                
-                
-               $resultados= mysqli_query($conn,"SELECT * FROM $Asignacion WHERE personaid=$personaid");
-               while($consulta=mysqli_fetch_array($resultados))
-              
-               {
-             echo $consulta['id'];
-             echo "<br>";
-             echo $consulta['fecha_asignacion'];
-             echo "<br>";
-             echo $consulta['residente'];
-             echo "<br>";
-             
-               }
-               Include("cerra_conn.php");
-                
+                }
+                if (accion == "eliminar") {
+                    if (d.value == "")
+                        sub = false;
+                    d.style = "border-color:red;";
+
+                }
+                if (accion == "Actualizar") {
+                    if (d.value == "")
+                        sub = false;
+                    d.style = "border-color:red;";
+                }
+                if (accion == "consultar") {
+                    if (d.value == "")
+                        d.style = "border-color:red;";
+                    sub = false;
+                    ajax();
+                }
+                if (sub) {
+
+
+                    form.submit();
+                }
+
             }
+            function ajax() {
+                var d = document.getElementById("id").value;
+                const xmlhttp = new XMLHttpRequest();
+                xmlhttp.onload = function () {
+                    try {
+                        myObj = JSON.parse(this.responseText);//[1013,Juan,Milena,Herrera,García,jua@h.com]
+                        document.getElementById("fecha_asignacion").value = myObj[1];
+                        document.getElementById("residente").value = myObj[2];
 
-        }
+                    } catch (e) {
+                        document.getElementById("fecha_asignacion").value = "";
+                        document.getElementById("residente").value = "";
+                        
+                        alert(this.responseText);
 
+                    }
 
+                }
+                xmlhttp.open("POST", "Controlador/AsignacionC.php");
+                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlhttp.send("accion=consultar&personaid=" + d);
 
+            }
 
     </script>
 
@@ -89,10 +94,12 @@
             text-align: center;
             font-family: arial;
         }
-        #tabla1{
+        #tabla8{
             border: 1px  solid black;
             padding: 5px;
-            p.solid {border-style: solid;}
+            p.solid {
+                border-style: solid;
+            }
         }
 
     </style>
@@ -102,40 +109,34 @@
     <body>
 
         <form action="" method="post" name="enviar">
-            <table id="tabla2">
+            <table id="tabla8">
 
                 <tr>
                     <td><label for="id">Identificación</td>
-                    <td><input type="number"id="id"name="id"></td>
+                    <td><input type="number" id="id" name="id"></td>
                 </tr>
                 <tr>
-                    <td><label for="fecha_asignacion">Fecha de Asignación </td>
-                    <td><input type="date"id="fecha_asignacion"name="fecha_asignacion"></td>
+                    <td><label for="fecha_asignacion">Fecha de Asignacion</td>
+                    <td><input type="date" id="fecha_asignacion" name="fecha_asignacion"></td>
                 </tr>
-                
+
                 <tr>
-                    <td><label for="residente">Residente</td>
-                    <td><input type="text"id="residente"name="residente"></td>
+                    <td><label for="residente">Nombre de Residente</td>
+                    <td><input type="text" id="residente" name="residente"></td>
                 </tr>
-               
+
                 <tr>
-                    
-                    <td><input type="button" value="Guardar" class="btn btn-info" onclick="enviarF('Guardar')"></td>
-                    <td><input type="submit" value="Actualizar" class="btn btn-info" onclick="enviarF('Actualizar')"></td>
+                    <td><input type="button" value="Guardar" class="btn btn-primary" onclick="enviarF('Guardar')"></td>
+                    <td><input type="button" value="Actualizar" class="btn btn-primary" onclick="enviarF('Actualizar')"></td>
                 </tr>
                 <tr>
-                    <td><input type="button" value="eliminar" class="btn btn-warning"  onclick="enviarF('eliminar')"></td>
-                    <td><input type="button" value="consultar" class="btn btn-warning" onclick="enviarF('consultar')"></td> 
+                    <td><input type="button" value="eliminar" class="btn btn-success" onclick="enviarF('eliminar')"></td>
+                    <td><input type="button" value="consultar" class="btn btn-success" onclick="enviarF('consultar')"></td> 
                 </tr>
             </table>
 
         </form>
 
-
-
-
     </body>
 </html>
-
-
 

@@ -1,6 +1,7 @@
 <?php
 
 require_once '../Modelo/RolesM.php';
+require_once './Mensaje.php';
 
 class RolesC extends Roles {
 

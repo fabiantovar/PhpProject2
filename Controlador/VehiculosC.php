@@ -1,6 +1,7 @@
 <?php
 
 require_once '../Modelo/VehiculosM.php';
+require_once './Mensaje.php';
 
 class VehiculosC extends Vehiculos {
 
@@ -39,7 +40,7 @@ class VehiculosC extends Vehiculos {
     function registrar() {
         if ($this->validarDatos()) {
 
-            $sql = "INSERT INTO Vehiculos Values('" . $this->getPlaca() . "','" . $this->getModelo() . "','" . $this->getTipo() . "','" . $this->getColor() . "')";
+            $sql = "INSERT INTO Vehiculos Values('" . $this->getPlaca() . "','" . $this->getModelo() . "','" . $this->getTipo() . "','" . $this->getColor() ."','".$this->getMarca(). "')";
 
             $this->EjecutarQuery($sql, "El vehiculo se ha registrado");
         } else {

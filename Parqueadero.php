@@ -59,7 +59,7 @@
             const xmlhttp = new XMLHttpRequest();
             xmlhttp.onload = function () {
                 try {
-                    myObj = JSON.parse(this.responseText);//[1013,Juan,Milena,Herrera,García,jua@h.com]
+                    myObj = JSON.parse(this.responseText);
                     document.getElementById("disponibilidad").value = myObj[1];
                 } catch (e) {
                     document.getElementById("disponibilidad").value = "";
