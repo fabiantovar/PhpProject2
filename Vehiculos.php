@@ -14,8 +14,11 @@
             form.action = "Controlador/VehiculosC.php?accion=" + accion;
 
             var d = document.getElementById("placa");
-            var pn = document.getElementById("modelo");
-            var pa = document.getElementById("tipo");
+            var mo = document.getElementById("modelo");
+            var ti = document.getElementById("tipo");
+            var co = document.getElementById("color");
+            var ma = document.getElementById("marca");
+
             var sub = true;
             if (accion == "Guardar") {
 
@@ -24,14 +27,24 @@
                     d.style = "border-color:red;";
                 }
 
-                if (pn.value == "") {
+                if (mo.value == "") {
                     sub = false;
-                    pn.style = "border-color:red;";
+                    mo.style = "border-color:red;";
 
                 }
-                if (pa.value == "") {
+                if (ti.value == "") {
                     sub = false;
-                    pa.style = "border-color:red;";
+                    ti.style = "border-color:red;";
+                }
+
+                if (co.value == "") {
+                    sub = false;
+                    co.style = "border-color:red;";
+                }
+
+                if (ma.value == "") {
+                    sub = false;
+                    ma.style = "border-color:red;";
                 }
 
             }
@@ -59,29 +72,33 @@
             }
 
         }
-        function ajax() {
-            var d = document.getElementById("placa").value;
-            const xmlhttp = new XMLHttpRequest();
-            xmlhttp.onload = function () {
-                try {
-                    myObj = JSON.parse(this.responseText);//[1013,Juan,Milena,Herrera,García,jua@h.com]
-                    document.getElementById("placa").value = myObj[1];
-                    document.getElementById("modelo").value = myObj[2];
-                    document.getElementById("tipo").value = myObj[3];
-                } catch (e) {
-                    document.getElementById("placa").value = "";
-                    document.getElementById("modelo").value = "";
-                    document.getElementById("tipo").value = "";
-                    alert(this.responseText);
+            function ajax() {
+                var d = document.getElementById("placa").value;
+                const xmlhttp = new XMLHttpRequest();
+                xmlhttp.onload = function () {
+                    try {
+                        myObj = JSON.parse(this.responseText);//[1013,Juan,Milena,Herrera,García,jua@h.com]
+                        document.getElementById("placa").value = myObj[0];
+                        document.getElementById("modelo").value = myObj[1];
+                        document.getElementById("tipo").value = myObj[2];
+                        document.getElementById("color").value = myObj[3];
+                        document.getElementById("marca").value = myObj[4];
+                    } catch (e) {
+                        document.getElementById("placa").value = "";
+                        document.getElementById("modelo").value = "";
+                        document.getElementById("tipo").value = "";
+                        document.getElementById("color").value = "";
+                        document.getElementById("marca").value = "";
+                        alert(this.responseText);
+
+                    }
 
                 }
+                xmlhttp.open("POST", "Controlador/VehiculoC.php");
+                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlhttp.send("accion=consultar&placa=" + d);
 
             }
-            xmlhttp.open("POST", "Controlador/VehiculoC.php");
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send("accion=consultar&placa=" + d);
-
-        }
 
     </script>
 
@@ -113,21 +130,25 @@
 
                 <tr>
                     <td><label for="placa">Placa</td>
-                    <td><input type="text" id="placa" name="placa"></td>
+                    <td><input type="number" id="placa" name="placa"></td>
                 </tr>
                 <tr>
-                    <td><label for="Pnombre">Primer nombre</td>
-                    <td><input type="text" id="Pnombre" name="Pnombre"></td>
-                </tr>
-
-                <tr>
-                    <td><label for="Papellido">Primer apellido</td>
-                    <td><input type="text" id="Papellido" name="Papellido"></td>
+                    <td><label for="modelo">Modelo</td>
+                    <td><input type="text" id="modelo" name="modelo"></td>
                 </tr>
 
                 <tr>
-                    <td><label for="telefono">telefono</td>
-                    <td><input type="number" id="telefono" name="Telefono"></td>
+                    <td><label for="marca">Marca</td>
+                    <td><input type="text" id="marca" name="marca"></td>
+                </tr>
+
+                <tr>
+                    <td><label for="color">Color</td>
+                    <td><input type="text" id="color" name="color"></td>
+                </tr>
+                <tr>
+                    <td><label for="tipo">Tipo</td>
+                    <td><input type="text" id="tipo" name="tipo"></td>
                 </tr>
                 <tr>
                     <td><input type="button" value="Guardar" class="btn btn-primary" onclick="enviarF('Guardar')"></td>

@@ -1,7 +1,7 @@
 <?php
 
 require_once '../Modelo/ResidentesM.php';
-
+require_once './Mensaje.php';
 class ResidentesC extends Residentes {
 
     function __construct() {
@@ -77,7 +77,7 @@ class ResidentesC extends Residentes {
                 echo $myJSON;
             }
         } else {
-            Mensajes::info("No hay resultados");
+            Mensajes::m("No hay resultados");
         }
         $conn->close();
     }

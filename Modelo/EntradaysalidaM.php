@@ -5,13 +5,21 @@ class Entradaysalida {
     private $personaid;
      private$placavehiculo;
     private $parqueadero;
-   
+    private $entrada;
+    private $salida;
     
-    public function __construct($personaid, $placavehiculo,$parqueadero) {
+
+
+
+
+    public function __construct($personaid, $placavehiculo, $parqueadero, $entrada, $salida) {
         $this->personaid = $personaid;
-        $this->placavehiculo = $placavehiculo;      
+        $this->placavehiculo = $placavehiculo;
         $this->parqueadero = $parqueadero;
+        $this->entrada = $entrada;
+        $this->salida = $salida;
     }
+
     public function getPersonaid() {
         return $this->personaid;
     }
@@ -22,6 +30,14 @@ class Entradaysalida {
 
     public function getParqueadero() {
         return $this->parqueadero;
+    }
+
+    public function getEntrada() {
+        return $this->entrada;
+    }
+
+    public function getSalida() {
+        return $this->salida;
     }
 
     public function setPersonaid($personaid): void {
@@ -35,6 +51,15 @@ class Entradaysalida {
     public function setParqueadero($parqueadero): void {
         $this->parqueadero = $parqueadero;
     }
+
+    public function setEntrada($entrada): void {
+        $this->entrada = $entrada;
+    }
+
+    public function setSalida($salida): void {
+        $this->salida = $salida;
+    }
+
 
 
 

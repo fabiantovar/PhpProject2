@@ -65,9 +65,9 @@
             xmlhttp.onload = function () {
                 try {
                     myObj = JSON.parse(this.responseText);//[1013,Juan,Milena,Herrera,García,jua@h.com]
-                    document.getElementById("id").value = myObj[1];
-                    document.getElementById("apto").value = myObj[2];
-                    document.getElementById("torre").value = myObj[3];
+                    document.getElementById("id").value = myObj[0];
+                    document.getElementById("apto").value = myObj[1];
+                    document.getElementById("torre").value = myObj[2];
                 } catch (e) {
                     document.getElementById("id").value = "";
                     document.getElementById("apto").value = "";
