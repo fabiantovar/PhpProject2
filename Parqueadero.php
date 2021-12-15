@@ -103,11 +103,11 @@
             <table id="tabla8">
 
                 <tr>
-                    <td><label for="numero">Numero de Parqueadero</td>
+                    <td><label for="numero"><b>Numero de Parqueadero</b></td>
                     <td><input type="number" id="numero" name="numero"></td>
                 </tr>
                 <tr>
-                    <td><label for="disponibilidad">Disponible</td>
+                    <td><label for="disponibilidad"><b>Disponible</b></td>
                     <td><input type="text" id="disponibilidad" name="disponibilidad"></td>
                 </tr>
 
@@ -117,8 +117,8 @@
                     <td><input type="button" value="Actualizar" class="btn btn-primary" onclick="enviarF('Actualizar')"></td>
                 </tr>
                 <tr>
-                    <td><input type="button" value="eliminar" class="btn btn-success" onclick="enviarF('eliminar')"></td>
-                    <td><input type="button" value="consultar" class="btn btn-success" onclick="enviarF('consultar')"></td> 
+                    <td><input type="button" value="eliminar" class="btn btn-secondary" onclick="enviarF('eliminar')"></td>
+                    <td><input type="button" value="consultar" class="btn btn-secondary" onclick="enviarF('consultar')"></td> 
                 </tr>
             </table>
 

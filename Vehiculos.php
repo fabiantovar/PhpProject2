@@ -72,33 +72,33 @@
             }
 
         }
-            function ajax() {
-                var d = document.getElementById("placa").value;
-                const xmlhttp = new XMLHttpRequest();
-                xmlhttp.onload = function () {
-                    try {
-                        myObj = JSON.parse(this.responseText);//[1013,Juan,Milena,Herrera,García,jua@h.com]
-                        document.getElementById("placa").value = myObj[0];
-                        document.getElementById("modelo").value = myObj[1];
-                        document.getElementById("tipo").value = myObj[2];
-                        document.getElementById("color").value = myObj[3];
-                        document.getElementById("marca").value = myObj[4];
-                    } catch (e) {
-                        document.getElementById("placa").value = "";
-                        document.getElementById("modelo").value = "";
-                        document.getElementById("tipo").value = "";
-                        document.getElementById("color").value = "";
-                        document.getElementById("marca").value = "";
-                        alert(this.responseText);
-
-                    }
+        function ajax() {
+            var d = document.getElementById("placa").value;
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function () {
+                try {
+                    myObj = JSON.parse(this.responseText);//[1013,Juan,Milena,Herrera,García,jua@h.com]
+                    document.getElementById("placa").value = myObj[0];
+                    document.getElementById("modelo").value = myObj[1];
+                    document.getElementById("tipo").value = myObj[2];
+                    document.getElementById("color").value = myObj[3];
+                    document.getElementById("marca").value = myObj[4];
+                } catch (e) {
+                    document.getElementById("placa").value = "";
+                    document.getElementById("modelo").value = "";
+                    document.getElementById("tipo").value = "";
+                    document.getElementById("color").value = "";
+                    document.getElementById("marca").value = "";
+                    alert(this.responseText);
 
                 }
-                xmlhttp.open("POST", "Controlador/VehiculoC.php");
-                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xmlhttp.send("accion=consultar&placa=" + d);
 
             }
+            xmlhttp.open("POST", "Controlador/VehiculoC.php");
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("accion=consultar&placa=" + d);
+
+        }
 
     </script>
 
@@ -129,34 +129,54 @@
             <table id="tabla8">
 
                 <tr>
-                    <td><label for="placa">Placa</td>
-                    <td><input type="number" id="placa" name="placa"></td>
+                    <td><label for="placa"><b>Placa</b></td>
+                    <td><input type="text" id="placa" name="placa"></td>
                 </tr>
                 <tr>
-                    <td><label for="modelo">Modelo</td>
+                    <td><label for="modelo"><b>Modelo</b></td>
                     <td><input type="text" id="modelo" name="modelo"></td>
                 </tr>
 
                 <tr>
-                    <td><label for="marca">Marca</td>
+                    <td><label for="marca"><b>Marca</b></td>
                     <td><input type="text" id="marca" name="marca"></td>
                 </tr>
 
                 <tr>
-                    <td><label for="color">Color</td>
+                    <td><label for="color"><b>Color</b></td>
                     <td><input type="text" id="color" name="color"></td>
                 </tr>
                 <tr>
-                    <td><label for="tipo">Tipo</td>
-                    <td><input type="text" id="tipo" name="tipo"></td>
+                    <td><label for="tipo"><b>Tipo</b></td>
+                    <td>
+                        <select id="tipo" name="tipo">
+                            
+                        
+                        <?php
+                        require_once 'Controlador/conexion.php';
+                        $sql="select * from tipos_vehiculos";
+                       $result= $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            // output data of each row
+                            while ($row = $result->fetch_assoc()) {
+                               echo '<option value="'.$row['id'].'">'.$row['tipo'].'</option>';
+                            }
+                        } else {
+                            echo "0 results";
+                        }
+                        $conn->close();
+                        ?>
+                        
+                        </select>
+                        </td>
                 </tr>
                 <tr>
                     <td><input type="button" value="Guardar" class="btn btn-primary" onclick="enviarF('Guardar')"></td>
                     <td><input type="button" value="Actualizar" class="btn btn-primary" onclick="enviarF('Actualizar')"></td>
                 </tr>
                 <tr>
-                    <td><input type="button" value="eliminar" class="btn btn-success" onclick="enviarF('eliminar')"></td>
-                    <td><input type="button" value="consultar" class="btn btn-success" onclick="enviarF('consultar')"></td> 
+                    <td><input type="button" value="eliminar" class="btn btn-secondary" onclick="enviarF('eliminar')"></td>
+                    <td><input type="button" value="consultar" class="btn btn-secondary" onclick="enviarF('consultar')"></td> 
                 </tr>
             </table>
 

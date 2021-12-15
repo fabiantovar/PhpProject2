@@ -112,16 +112,16 @@
             <table id="tabla8">
 
                 <tr>
-                    <td><label for="id">Identificación</td>
+                    <td><label for="id"><b>Identificación</b></td>
                     <td><input type="number" id="id" name="id"></td>
                 </tr>
                 <tr>
-                    <td><label for="fecha_asignacion">Fecha de Asignacion</td>
+                    <td><label for="fecha_asignacion"><b>Fecha de Asignacion</b></td>
                     <td><input type="date" id="fecha_asignacion" name="fecha_asignacion"></td>
                 </tr>
 
                 <tr>
-                    <td><label for="residente">Nombre de Residente</td>
+                    <td><label for="residente"><b>Nombre de Residente</b></td>
                     <td><input type="text" id="residente" name="residente"></td>
                 </tr>
 
@@ -130,8 +130,8 @@
                     <td><input type="button" value="Actualizar" class="btn btn-primary" onclick="enviarF('Actualizar')"></td>
                 </tr>
                 <tr>
-                    <td><input type="button" value="eliminar" class="btn btn-success" onclick="enviarF('eliminar')"></td>
-                    <td><input type="button" value="consultar" class="btn btn-success" onclick="enviarF('consultar')"></td> 
+                    <td><input type="button" value="eliminar" class="btn btn-secondary" onclick="enviarF('eliminar')"></td>
+                    <td><input type="button" value="consultar" class="btn btn-secondary" onclick="enviarF('consultar')"></td> 
                 </tr>
             </table>
 

@@ -29,7 +29,7 @@ class AsignacionC extends Asignacion {
     function eliminar() {
         if ($this->validarDatos()) {
 
-            $sql = "DELETE FROM Asignacion WHERE id='" . $this->getId() . "'";
+            $sql = "DELETE FROM asignacion_parqueaderos WHERE id='" . $this->getId() . "'";
 
             $this->EjecutarQuery($sql, "El registro se ha eleiminado");
         } else {
@@ -40,7 +40,7 @@ class AsignacionC extends Asignacion {
     function registrar() {
         if ($this->validarDatos()) {
 
-            $sql = "INSERT INTO Asignacion Values('" . $this->getId() . "','" . $this->getFecha_asignacion() . "','" . $this->getResidente() . "')";
+            $sql = "INSERT INTO asignacion_parqueaderos Values('" . $this->getId() . "','" . $this->getFecha_asignacion() . "','" . $this->getResidente() . "')";
 
             $this->EjecutarQuery($sql, "El vehiculo se ha registrado");
         } else {
@@ -50,7 +50,7 @@ class AsignacionC extends Asignacion {
 
     function actualizar() {
         if ($this->validarDatos()) {
-            $sql = "UPDATE Vehiculos SET fecha_asignacion='" . $this->getFecha_asignacion() . "',residente='" . $this->getResidente() . "'WHERE id='" . $this->getId() . "'";
+            $sql = "UPDATE asignacion_parqueaderos SET fecha_asignacion='" . $this->getFecha_asignacion() . "',residente='" . $this->getResidente() . "'WHERE id='" . $this->getId() . "'";
             $this->EjecutarQuery($sql, "El registro  se ha actualizado en la base");
         } else {
             echo 'Los datos no se pueden actualizar';
@@ -59,7 +59,7 @@ class AsignacionC extends Asignacion {
 
     function consultar() {
         if ($this->validarDatos()) {
-            $sql = "SELECT * FROM Asignacion  WHERE id='" . $this->getId() . "'";
+            $sql = "SELECT * FROM asignacion_parqueaderos  WHERE id='" . $this->getId() . "'";
             $this->ejecutarSelect($sql);
         }
     }

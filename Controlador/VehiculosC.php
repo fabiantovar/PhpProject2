@@ -40,7 +40,7 @@ class VehiculosC extends Vehiculos {
     function registrar() {
         if ($this->validarDatos()) {
 
-            $sql = "INSERT INTO Vehiculos Values('" . $this->getPlaca() . "','" . $this->getModelo() . "','" . $this->getTipo() . "','" . $this->getColor() ."','".$this->getMarca(). "')";
+              $sql = "INSERT INTO Vehiculos Values('" . $this->getPlaca() . "','" . $this->getModelo() . "','" . $this->getMarca() . "','" . $this->getColor() ."','".$this->getTipo(). "')";
 
             $this->EjecutarQuery($sql, "El vehiculo se ha registrado");
         } else {

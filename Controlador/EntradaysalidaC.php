@@ -29,7 +29,7 @@ class EntradaysalidaC extends Entradaysalida {
     function eliminar() {
         if ($this->validarDatos()) {
 
-            echo  $sql = "DELETE FROM Entradaysalida WHERE personaid='" . $this->getPersonaid() . "'";
+            echo  $sql = "DELETE FROM residentes_entrada_salida WHERE personaid='" . $this->getPersonaid() . "'";
 
             $this->EjecutarQuery($sql, "La personas ha sido eleminada");
         } else {
@@ -40,7 +40,7 @@ class EntradaysalidaC extends Entradaysalida {
     function registrar() {
         if ($this->validarDatos()) {
 
-             $sql = "INSERT INTO Entradaysalida Values('" . $this->getPersonaid() . "','" . $this->getPlacavehiculo() . "','" . $this->getParqueadero() . "','" . $this->getEntrada() ."','".$this->getSalida(). "')";
+             $sql = "INSERT INTO residentes_entrada_salida Values('" . $this->getEntrada() . "','" . $this->getSalida() . "','" . $this->getPersonaid() . "','" . $this->getPlacavehiculo() ."','".$this->getParqueadero(). "')";
 
             $this->EjecutarQuery($sql, "La personas se ha registrado");
         } else {
@@ -50,7 +50,7 @@ class EntradaysalidaC extends Entradaysalida {
 
     function actualizar() {
         if ($this->validarDatos()) {
-            $sql = "UPDATE Entradaysalida SET personaid='" .$this->getPersonaid(). $this->getPlacavehiculo()  . $this->getParqueadero() . $this->getPersonaid() .$this->getEntrada(). $this->getSalida() ."'";
+            $sql = "UPDATE residentes_entrada_salida SET personaid='" .$this->getPersonaid(). $this->getPlacavehiculo()  . $this->getParqueadero() . $this->getPersonaid() .$this->getEntrada(). $this->getSalida() ."'";
             $this->EjecutarQuery($sql, "La persona se ha actualizado en la base");
         } else {
             echo 'Los datos no se pueden actualizar';

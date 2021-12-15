@@ -125,26 +125,26 @@
             <table id="tabla8">
 
                 <tr>
-                    <td><label for="personaid">Identificación</td>
+                    <td><label for="personaid"><b>Identificación</b></td>
                     <td><input type="number" id="personaid" name="personaid"></td>
                 </tr>
                 <tr>
-                    <td><label for="placavehiculo">Placa Vehiculo</td>
+                    <td><label for="placavehiculo"><b>Placa Vehiculo</b></td>
                     <td><input type="text" id="placavehiculo" name="placavehiculo"></td>
                 </tr>
 
                 <tr>
-                    <td><label for="entrada">Entrada</td>
+                    <td><label for="entrada"><b>Entrada</b></td>
                     <td><input type="datetime-local" id="entrada" name="entrada"></td>
                 </tr>
 
                 <tr>
-                    <td><label for="salida">Salida</td>
+                    <td><label for="salida"><b>Salida</b></td>
                     <td><input type="datetime-local" id="salida" name="salida"></td>
                 </tr>
                 
                 <tr>
-                    <td><label for="parqueadero">Parqueadero</td>
+                    <td><label for="parqueadero"><b>Parqueadero</b></td>
                     <td><input type="number" id="parqueadero" name="parqueadero"></td>
                 </tr>
                 <tr>
@@ -152,8 +152,8 @@
                     <td><input type="button" value="Actualizar" class="btn btn-primary" onclick="enviarF('Actualizar')"></td>
                 </tr>
                 <tr>
-                    <td><input type="button" value="eliminar" class="btn btn-success" onclick="enviarF('eliminar')"></td>
-                    <td><input type="button" value="consultar" class="btn btn-success" onclick="enviarF('consultar')"></td> 
+                    <td><input type="button" value="eliminar" class="btn btn-secondary" onclick="enviarF('eliminar')"></td>
+                    <td><input type="button" value="consultar" class="btn btn-secondary" onclick="enviarF('consultar')"></td> 
                 </tr>
             </table>
 

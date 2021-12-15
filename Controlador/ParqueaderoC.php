@@ -29,7 +29,7 @@ class ParqueaderoC extends Parqueadero {
     function eliminar() {
         if ($this->validarDatos()) {
 
-            $sql = "DELETE FROM Parqueadero WHERE numero='" . $this->getNumero() . "'";
+            $sql = "DELETE FROM Parqueaderos WHERE numero='" . $this->getNumero() . "'";
 
             $this->EjecutarQuery($sql, "El registo se ha eliminado");
         } else {
@@ -40,7 +40,7 @@ class ParqueaderoC extends Parqueadero {
     function registrar() {
         if ($this->validarDatos()) {
 
-            $sql = "INSERT INTO Parqueadero Values('" . $this->getNumero() . "','" . $this->getDisponibilidad() . "')";
+            $sql = "INSERT INTO Parqueaderos Values('" . $this->getNumero() . "','" . $this->getDisponibilidad() . "')";
 
             $this->EjecutarQuery($sql, "Se ha registrado");
         } else {
@@ -50,7 +50,7 @@ class ParqueaderoC extends Parqueadero {
 
     function actualizar() {
         if ($this->validarDatos()) {
-            $sql = "UPDATE Parqueadero SET disponibilidad='" . $this->getDisponibilidad() . "' WHERE numero='" . $this->getNumero() . "'";
+            $sql = "UPDATE Parqueaderos SET disponibilidad='" . $this->getDisponibilidad() . "' WHERE numero='" . $this->getNumero() . "'";
             $this->EjecutarQuery($sql, "La persona se ha actualizado en la base");
         } else {
             echo 'Los datos no se pueden actualizar';
@@ -59,7 +59,7 @@ class ParqueaderoC extends Parqueadero {
 
     function consultar() {
         if ($this->validarDatos()) {
-            $sql = "SELECT * FROM Parqueadero  WHERE numero='" . $this->getNumero() . "'";
+            $sql = "SELECT * FROM Parqueaderos  WHERE numero='" . $this->getNumero() . "'";
             $this->ejecutarSelect($sql);
         }
     }

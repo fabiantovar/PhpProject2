@@ -29,9 +29,11 @@ class RolesC extends Roles {
     function eliminar() {
         if ($this->validarDatos()) {
 
+           
             $sql = "DELETE FROM Roles WHERE id='" . $this->getId() . "'";
 
             $this->EjecutarQuery($sql, "La personas ha sido eleminada");
+            
         } else {
             echo 'faltan datos y no se puede registrar';
         }

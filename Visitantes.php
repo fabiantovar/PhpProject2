@@ -112,21 +112,21 @@
             <table id="tabla8">
 
                 <tr>
-                    <td><label for="Id">Identificación</td>
+                    <td><label for="Id"><b>Identificación</b></td>
                     <td><input type="number" id="Id" name="Id"></td>
                 </tr>
                 <tr>
-                    <td><label for="Pnombre">Primer nombre</td>
+                    <td><label for="Pnombre"><b>Primer nombre</b></td>
                     <td><input type="text" id="Pnombre" name="Pnombre"></td>
                 </tr>
 
                 <tr>
-                    <td><label for="Papellido">Primer apellido</td>
+                    <td><label for="Papellido"><b>Primer apellido</b></td>
                     <td><input type="text" id="Papellido" name="Papellido"></td>
                 </tr>
 
                 <tr>
-                    <td><label for="telefono">telefono</td>
+                    <td><label for="telefono"><b>telefono</b></td>
                     <td><input type="number" id="telefono" name="Telefono"></td>
                 </tr>
                 <tr>
@@ -134,8 +134,8 @@
                     <td><input type="button" value="Actualizar" class="btn btn-primary" onclick="enviarF('Actualizar')"></td>
                 </tr>
                 <tr>
-                    <td><input type="button" value="eliminar" class="btn btn-success" onclick="enviarF('eliminar')"></td>
-                    <td><input type="button" value="consultar" class="btn btn-success" onclick="enviarF('consultar')"></td> 
+                    <td><input type="button" value="eliminar" class="btn btn-secondary" onclick="enviarF('eliminar')"></td>
+                    <td><input type="button" value="consultar" class="btn btn-secondary" onclick="enviarF('consultar')"></td> 
                 </tr>
             </table>
 
