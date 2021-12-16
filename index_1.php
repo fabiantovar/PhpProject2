@@ -1,103 +1,116 @@
-<!DOCTYPE html>
-<html>
-
+<!DOCTYPE html><html>
     <head>
-
-
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <meta charset="UTF-8">
         <title></title>
+        <style>
+            <img src="../../../Users/fatom/Downloads/savecar5.jpeg" alt=""/>
+            .divider:after,
+            .divider:before {
+                content: "";
+                flex: 1;
+                height: 10px;
+                background: #eee;
+            }
+        </style>
+        <style type="text/css">
+            body{
+                background-image: url("img/savecar5.jpeg");
+                background-size: cover;
+                background-position: center;
+                width: 100%;
+                height: 100vh;
 
 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <style type =text/css >
+            }
 
-            ul li a {
+
+            ul li a{
                 color:black;
-                text-decoration:none;
-
-            }
-            .center{
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-
-
-            }
-            .navbar a{
-                
-                width: 100px;
-                display: block;
-                padding: 40px 30px;
-                font-size: 15px;
-                text-align: center;
-                color: black;
-                
+                text-decoration: none;
             }
             ul li{
                 list-style: none;
                 float: left;
-                width: 100px;
+                width: 86px;
             }
             nav{
                 width: 100%;
-                height: 100px;
-
+                height: 34px;
+                background-color: #1b6ae1;
+                padding-top: 1px;
+                padding-bottom: 17px;
             }
 
         </style>
     </head>
-    <body>
 
-        <nav>
-            <ul>
 
-                <nav class="navbar navbar-expand-lg navbar-light bg-info">
-                    <div class="container-fluid">
-                       
-                        <a class="navbar-brand" href="Visitantes.php"><b>Registro Personas</b></a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="container">
+        <div class="row justify-content-center">
 
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="navbar-brand" aria-current="page" href="Residentes.php"><b>Residentes</b></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="navbar-brand" aria-current="page" href="Roles.php"><b>Usuario</b></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-item
-                                       " aria-current="page" href="Vehiculos.php"><b>Vehiculos</b></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-item
-                                       " aria-current="page" href="Parqueadero.php"><b>Parqueadero</b></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-item
-                                       " aria-current="page" href=" Registroentradaysalida.php "><b>Registro IN-OUT</b></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-item" aria-current="page" href="Asignacion.php"><b>Asignacion</b></a>
-                                </li>
-                               
+            <div class="col-sm-8">
 
-                            </ul>
-                            <div> </div>
+            </div>
+
+
+            <div class="col-sm-4">
+
+
+
+                <h1>INICIAR SESION</h1>
+
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex align-items-center justify-content-center h-100">
+                <div class="col-md-8 col-lg-7 col-xl-6">
+                </div>
+                <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                    <form action="controlador/login.php" method="post">
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="number" id="usuario" name="usuario" class="form-control form-control-lg" />
+                            <label class="form-label" for="usuario">Usuario</label>
                         </div>
-                    </div>
-                    
-                </nav>
 
-            </ul>
-            <img src="img/Parqueadero.jpg" height="900" width="900" class="center">
-            
-        </nav>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    </body>
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <input type="password" id="clave" name="clave" class="form-control form-control-lg" />
+                            <label class="clave" for="clave">Contraseña</label>
+                        </div>
+
+                        <div class="d-flex justify-content-around align-items-center mb-4">
+                            <!-- Checkbox -->
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    value=""
+                                    id="form1Example3"
+                                    checked
+                                    />
+                                <label class="form-check-label" for="form1Example3"> Recordarme </label>
+                            </div>
+                            <a href="#!">¿Olvidaste tu contraseña?</a>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Ingresar</button>
+
+                        <div class="divider d-flex align-items-center my-4">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
 </html>
-
-
-
